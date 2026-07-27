@@ -18,48 +18,73 @@ body {
     vertical-align: middle;
 }
 
-/* --- 3. Collapsible/Accordion Styles (Button Styling) --- */
+/* --- 3. Collapsible/Accordion Styles (Floating Glassmorphism Button) --- */
 .toggle-button {
-    /* Apply Vazirmatn font to the button itself */
     font-family: 'Vazirmatn', sans-serif; 
+    font-size: 20px; 
+    padding: 14px 24px; 
     
-    /* FIX: Increase font size to make button and text bigger */
-    font-size: 20px; /* Text size for the button */
-    padding: 12px 18px; /* Padding for a bigger clickable area */
+    /* Glassmorphism Styling */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50px; /* Pill shape in closed state */
     
-    /* Required base styles */
-    background-color: #555; 
-    color: #ffffff;      
-    cursor: pointer;
+    /* Layout & Shadow */
     width: 100%;
     text-align: center;  
-    border: none;
+    cursor: pointer;
     outline: none;
-    transition: 0.4s;
-    margin-bottom: 5px; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-bottom: 8px; 
     display: block;
 }
 
 .toggle-button:hover {
-    background-color: #666;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px); /* Subtle float effect on hover */
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
 }
 
-/* --- 4. Collapsible/Accordion Styles (Content Hiding/Showing) --- */
+/* Morph shape to rounded box when active */
+.toggle-button.active {
+    border-radius: 18px 18px 0 0;
+    background: rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0;
+}
+
+/* --- 4. Collapsible/Accordion Styles (Glassmorphism Content) --- */
 .collapsible-content {
-    /* FIX: Apply the same font size to the content for consistency */
     font-size: 20px; 
-    
     line-height: 1.5em; 
     
-    /* Initially hidden state */
+    /* Matching Glassmorphism background for active container */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.25);
+    margin-bottom: 12px;
+
+    /* Expand transition */
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out; 
-    padding: 0 18px; 
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                padding 0.4s ease, 
+                opacity 0.3s ease; 
+    padding: 0 24px; 
 }
 
 .collapsible-content.active {
-    /* Max-height approximation for 30 lines (30 * 1.5 = 45em) */
     max-height: 45em; 
-    padding: 10px 18px; 
+    padding: 16px 24px; 
+    opacity: 1;
 }
