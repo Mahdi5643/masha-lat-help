@@ -1,0 +1,67 @@
+Old css (without floating glassmorphism accordion): 
+
+/* --- 1. Global Page Styles (The <body> tag) --- */
+body {
+    background-color: #333333; /* A dark gray for the background */
+    color: #ffffff;      /* White color for the text */
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+/* --- 2. Utility/Centering Styles --- */
+.center-text {
+    text-align: center;
+}
+
+.center-image {
+    text-align: center;
+}
+
+.inline-image {
+    vertical-align: middle;
+}
+
+/* --- 3. Collapsible/Accordion Styles (Button Styling) --- */
+.toggle-button {
+    /* Apply Vazirmatn font to the button itself */
+    font-family: 'Vazirmatn', sans-serif; 
+    
+    /* FIX: Increase font size to make button and text bigger */
+    font-size: 20px; /* Text size for the button */
+    padding: 12px 18px; /* Padding for a bigger clickable area */
+    
+    /* Required base styles */
+    background-color: #555; 
+    color: #ffffff;      
+    cursor: pointer;
+    width: 100%;
+    text-align: center;  
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-bottom: 5px; 
+    display: block;
+}
+
+.toggle-button:hover {
+    background-color: #666;
+}
+
+/* --- 4. Collapsible/Accordion Styles (Content Hiding/Showing) --- */
+.collapsible-content {
+    /* FIX: Apply the same font size to the content for consistency */
+    font-size: 20px; 
+    
+    line-height: 1.5em; 
+    
+    /* Initially hidden state */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out; 
+    padding: 0 18px; 
+}
+
+.collapsible-content.active {
+    /* Max-height approximation for 30 lines (30 * 1.5 = 45em) */
+    max-height: 45em; 
+    padding: 10px 18px; 
+}
