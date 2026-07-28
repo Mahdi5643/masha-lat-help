@@ -18,6 +18,21 @@ body {
     vertical-align: middle;
 }
 
+/* --- Container Box Style --- */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
 /* --- 3. Collapsible/Accordion Styles (Floating Glassmorphism Button) --- */
 .toggle-button {
     font-family: 'Vazirmatn', sans-serif; 
@@ -117,64 +132,4 @@ body {
     max-height: 45em; 
     padding: 16px 24px; 
     opacity: 1;
-}
-
-/* Reset basic spacing */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-border-box;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f4f6f8;
-  color: #333333;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-/* The Main Container Card */
-.container {
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 600px; /* Controls how wide the box gets */
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Soft modern shadow */
-  border: 1px solid #e1e8ed; /* Subtle outline */
-}
-
-/* Typography & Content Spacing Inside Container */
-.container h1, 
-.container h2 {
-  margin-bottom: 16px;
-  color: #1a1a1a;
-}
-
-.container p {
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #555555;
-}
-
-/* Example Primary Button inside container */
-.container .btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #2563eb;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.container .btn:hover {
-  background-color: #1d4ed8;
 }
