@@ -40,7 +40,12 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     margin-bottom: 8px; 
-    display: block;
+    
+    /* Plus/Minus Flex Container Layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .toggle-button:hover {
@@ -56,6 +61,31 @@ body {
     background: rgba(255, 255, 255, 0.18);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 0;
+}
+
+/* --- Pure CSS Animated Plus / Minus Icon --- */
+.toggle-button::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    flex-shrink: 0;
+    margin-left: 12px;
+    
+    /* Horizontal & Vertical bar forming the "+" */
+    background: 
+        linear-gradient(#ffffff, #ffffff) center/100% 2px no-repeat,
+        linear-gradient(#ffffff, #ffffff) center/2px 100% no-repeat;
+    
+    /* Smooth rotation transition */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Rotate and collapse vertical line into a "-" when open */
+.toggle-button.active::after {
+    transform: rotate(180deg);
+    background: linear-gradient(#ffffff, #ffffff) center/100% 2px no-repeat;
 }
 
 /* --- 4. Collapsible/Accordion Styles (Glassmorphism Content) --- */
