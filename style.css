@@ -158,7 +158,7 @@ img {
     /* --- ADD THESE HEADER MOBILE FIXES: --- */
     /* --- MOBILE HEADER COMPACT STYLES --- */
     .top-header {
-        padding: 8px 10px; /* Super compact padding */
+        padding: 10px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
@@ -170,7 +170,7 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
     }
 
     /* Force the header images to override the HTML width="50" height="50" */
