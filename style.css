@@ -158,7 +158,7 @@ img {
     /* --- ADD THESE HEADER MOBILE FIXES: --- */
     /* --- MOBILE HEADER COMPACT STYLES --- */
     .top-header {
-        padding: 8px 12px; /* Super compact padding */
+        padding: 10px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
@@ -170,16 +170,52 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
     }
 
     /* Force the header images to override the HTML width="50" height="50" */
+    /* MATCH DESKTOP ICON SIZE ON MOBILE */
     .top-header h1 img.inline-image {
-        width: 26px !important;
-        height: 26px !important;
-        max-width: 26px !important;
+        width: 50px !important;   /* Set this to 30px or 50px to match desktop exactly */
+        height: 50px !important;
+        max-width: 50px !important;
     }
 
+    /* Scale down top image so it doesn't overwhelm small screens */
+    .center-image > img {
+        width: 180px;
+        height: auto;
+    }
+
+    /* Reduce container padding on narrow screens */
+    .container {
+        padding: 16px;
+        margin: 16px auto;
+    }
+
+    /* Standardize button text size for mobile readability */
+    .toggle-button {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    /* Standardize expandable body text size for mobile */
+    .collapsible-content {
+        font-size: 15px;
+        padding: 0 16px;
+    }
+
+    .collapsible-content.active {
+        padding: 12px 16px;
+    }
+
+    /* Ensure body inline icons (inside buttons/text) stay clean */
+    .inline-image {
+        max-width: 25px; 
+        height: auto;
+        display: inline-block;
+    }
+	/* ✅ Closes @media (max-width: 600px) */
     /* ... keep all your other mobile rules below this ... */
     /* ... rest of your existing mobile rules stay unchanged ... */
     
