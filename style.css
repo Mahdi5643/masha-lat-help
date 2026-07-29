@@ -1,4 +1,4 @@
-/* --- 1. Global Page Styles (The <body> tag) --- */
+*  --- 1. Global Page Styles (The <body> tag) --- */
 body {
     margin: 0; /* Ensures header touches the top and side edges */
     background-color: #333333; /* A dark gray for the background */
@@ -162,7 +162,7 @@ img {
            First number (10px) is top/bottom padding.
            Increase it (e.g., 18px) to make the header taller.
            Decrease it (e.g., 6px) to make the header thinner. */
-        padding: 20px 12px; /* Super compact padding */
+        padding: 6px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
