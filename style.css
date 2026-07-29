@@ -182,3 +182,16 @@ img {
         padding: 12px 16px;
     }
 }
+
+    /* Ensure inline icons keep their set width and don't stretch on mobile */
+    .inline-image {
+        max-width: 25px; /* Fits both 25px and 50px icons cleanly */
+        height: auto;
+        display: inline-block;
+    }
+
+    /* Keep the header icons sized correctly on mobile */
+    h1 .inline-image {
+        max-width: 35px;
+    }
+}
