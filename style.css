@@ -158,7 +158,11 @@ img {
     /* --- ADD THESE HEADER MOBILE FIXES: --- */
     /* --- MOBILE HEADER COMPACT STYLES --- */
     .top-header {
-        padding: 10px 12px; /* Super compact padding */
+	        /* 1. CHANGE THIS FOR HEIGHT:
+           First number (10px) is top/bottom padding.
+           Increase it (e.g., 18px) to make the header taller.
+           Decrease it (e.g., 6px) to make the header thinner. */
+        padding: 6px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
@@ -170,9 +174,10 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 10px;/* Space between text and the icons */
     }
 
+	/* ... rest of your mobile CSS ... */
     /* Force the header images to override the HTML width="50" height="50" */
     /* MATCH DESKTOP ICON SIZE ON MOBILE */
     .top-header h1 img.inline-image {
