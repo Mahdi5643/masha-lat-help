@@ -162,7 +162,7 @@ img {
            First number (10px) is top/bottom padding.
            Increase it (e.g., 18px) to make the header taller.
            Decrease it (e.g., 6px) to make the header thinner. */
-        padding: 4px 12px; /* Super compact padding */
+        padding: 20px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
