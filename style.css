@@ -195,3 +195,12 @@ img {
         max-width: 35px;
     }
 }
+
+.top-header {
+  background-color: #f1f5f9; /* Light grey/blue background */
+  color: #0f172a;            /* Dark text */
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 2px solid #cbd5e1; /* Replaces the <hr> element */
+}
+ 
