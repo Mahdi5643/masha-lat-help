@@ -1,5 +1,6 @@
 /* --- 1. Global Page Styles (The <body> tag) --- */
 body {
+    margin: 0; /* Ensures header touches the top and side edges */
     background-color: #333333; /* A dark gray for the background */
     color: #ffffff;      /* White color for the text */
     font-family: 'Vazirmatn', sans-serif;
@@ -196,11 +197,17 @@ img {
     }
 }
 
+/* --- REPLACE THE .top-header BLOCK AT THE BOTTOM OF YOUR CSS WITH THIS: --- */
 .top-header {
-  background-color: #f1f5f9; /* Light grey/blue background */
-  color: #0f172a;            /* Dark text */
-  padding: 30px 20px;
-  text-align: center;
-  border-bottom: 2px solid #cbd5e1; /* Replaces the <hr> element */
+    background: rgba(255, 255, 255, 0.05); /* Matching dark glass background */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18); /* Sleek bottom divider replacing <hr> */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
 }
- 
+
+.top-header h1 {
+    margin: 0; /* Clears default browser heading margins */
+}
