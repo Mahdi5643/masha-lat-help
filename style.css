@@ -180,12 +180,12 @@ img {
 	/* ... rest of your mobile CSS ... */
     /* Force the header images to override the HTML width="50" height="50" */
     /* MATCH DESKTOP ICON SIZE ON MOBILE */
+	/* Reduce mobile header icon size so they don't stretch the header height */
     .top-header h1 img.inline-image {
-        width: 50px !important;   /* Set this to 30px or 50px to match desktop exactly */
-        height: 50px !important;
-        max-width: 50px !important;
+        width: 30px !important;   /* Set this to 30px or 50px to match desktop exactly */
+        height: 30px !important;
+        max-width: 30px !important;
     }
-
     /* Scale down top image so it doesn't overwhelm small screens */
     .center-image > img {
         width: 180px;
