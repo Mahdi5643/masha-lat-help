@@ -199,15 +199,21 @@ img {
 
 /* --- REPLACE THE .top-header BLOCK AT THE BOTTOM OF YOUR CSS WITH THIS: --- */
 .top-header {
-    background: rgba(255, 255, 255, 0.05); /* Matching dark glass background */
+    background: rgba(51, 51, 51, 0.85); /* Slightly darker transparency so content underneath doesn't bleed through visually */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 24px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18); /* Sleek bottom divider replacing <hr> */
+    padding: 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     margin-bottom: 20px;
+
+    /* --- Sticky Properties --- */
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Keeps header layered on top of all other elements */
 }
 
 .top-header h1 {
-    margin: 0; /* Clears default browser heading margins */
+    margin: 0;
 }
+ 
