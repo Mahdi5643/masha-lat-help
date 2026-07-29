@@ -1,4 +1,4 @@
-/* --- 1. Global Page Styles (The <body> tag) --- */
+*  --- 1. Global Page Styles (The <body> tag) --- */
 body {
     margin: 0; /* Ensures header touches the top and side edges */
     background-color: #333333; /* A dark gray for the background */
@@ -158,7 +158,7 @@ img {
     /* --- ADD THESE HEADER MOBILE FIXES: --- */
     /* --- MOBILE HEADER COMPACT STYLES --- */
     .top-header {
-        padding: 10px 12px; /* Super compact padding */
+        padding: 8px 10px; /* Super compact padding */
     }
 
     .top-header h1 {
@@ -170,7 +170,7 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
     }
 
     /* Force the header images to override the HTML width="50" height="50" */
