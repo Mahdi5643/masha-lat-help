@@ -1,4 +1,4 @@
-/*  --- 1. Global Page Styles (The <body> tag) --- */
+*   --- 1. Global Page Styles (The <body> tag) --- */
 body {
     margin: 0; /* Ensures header touches the top and side edges */
     background-color: #333333; /* A dark gray for the background */
@@ -200,7 +200,7 @@ img {
 
     /* Standardize button text size for mobile readability */
     .toggle-button {
-        font-size: 13px;
+        font-size: 14px;
         padding: 10px 16px;
     }
 
@@ -238,7 +238,7 @@ img {
 
     /* Standardize button text size for mobile readability */
     .toggle-button {
-        font-size: 13px;
+        font-size: 14px;
         padding: 12px 16px;
     }
 
