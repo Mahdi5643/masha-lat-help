@@ -156,23 +156,31 @@ img {
 /* --- Mobile Responsive Fixes --- */
 @media (max-width: 600px) {
     /* --- ADD THESE HEADER MOBILE FIXES: --- */
+    /* --- MOBILE HEADER COMPACT STYLES --- */
     .top-header {
-        padding: 12px 10px; /* Reduces top/bottom padding from 24px to 12px */
+        padding: 8px 12px; /* Super compact padding */
     }
 
     .top-header h1 {
-        font-size: 1.25rem; /* Reduces the title text size on phones */
+        font-size: 1.6rem; /* Slightly larger than h2 (which is usually ~1.3rem - 1.5rem) */
+        line-height: 1.2;
+        margin: 0;
+        
+        /* Flexbox centers text and icons neatly on one compact row */
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;           /* Spaces out the text and icons cleanly */
+        gap: 8px;
     }
 
-    .top-header h1 .inline-image {
-        max-width: 24px;   /* Shrinks the header icons on mobile */
-        height: auto;
+    /* Force the header images to override the HTML width="50" height="50" */
+    .top-header h1 img.inline-image {
+        width: 26px !important;
+        height: 26px !important;
+        max-width: 26px !important;
     }
 
+    /* ... keep all your other mobile rules below this ... */
     /* ... rest of your existing mobile rules stay unchanged ... */
     
     /* Scale down top image so it doesn't overwhelm small screens */
