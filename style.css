@@ -62,6 +62,10 @@ body {
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+
+	/* FIX: Adds spacing between the text and the symbol & handles long text wrapping */
+    gap: 16px; 
+    word-break: break-word;
 }
 
 .toggle-button:hover {
