@@ -195,24 +195,23 @@ img {
     h1 .inline-image {
         max-width: 35px;
     }
-	
-	/* --- REPLACE THE .top-header BLOCK AT THE BOTTOM OF YOUR CSS WITH THIS: --- */
-	.top-header {
-    	background: rgba(51, 51, 51, 0.85); /* Slightly darker transparency so content underneath doesn't bleed through visually */
-    	backdrop-filter: blur(12px);
-    	-webkit-backdrop-filter: blur(12px);
-    	padding: 20px 20px;
-    	border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    	margin-bottom: 20px;
-	
-    	/* --- Sticky Properties --- */
-    	position: sticky;
-    	top: 0;
-    	z-index: 100; /* Keeps header layered on top of all other elements */
-	}
-	
-	.top-header h1 {
-    	margin: 0;
-	}
-	
+} /* This correctly closes @media (max-width: 600px) */
+
+/* --- TOP HEADER (Gradient + Sticky) --- */
+.top-header {
+    /* Beautiful dark gradient that matches your theme */
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+    padding: 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    /* Sticky Header Settings */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.top-header h1 {
+    margin: 0;
+}
+
