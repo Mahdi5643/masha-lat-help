@@ -182,7 +182,6 @@ img {
     .collapsible-content.active {
         padding: 12px 16px;
     }
-}
 
     /* Ensure inline icons keep their set width and don't stretch on mobile */
     .inline-image {
@@ -195,14 +194,11 @@ img {
     h1 .inline-image {
         max-width: 35px;
     }
-} /* This correctly closes @media (max-width: 600px) */
+} /* ✅ Only ONE bracket closes @media (max-width: 600px) */
 
 /* --- TOP HEADER (Gradient + Sticky) --- */
 .top-header {
-    /* Beautiful dark gradient that matches your theme */
-    /* Gradient direction and color stops */
     background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
-    
     padding: 24px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -216,4 +212,4 @@ img {
 .top-header h1 {
     margin: 0;
     color: #ffffff;
-} 
+}
