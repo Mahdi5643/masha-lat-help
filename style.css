@@ -151,3 +151,34 @@ img {
         flex-direction: row; /* Display side-by-side on desktop */
     }
 }
+
+/* --- Mobile Responsive Fixes --- */
+@media (max-width: 600px) {
+    /* Scale down top image so it doesn't overwhelm small screens */
+    .center-image > img {
+        width: 180px;
+        height: auto;
+    }
+
+    /* Reduce container padding on narrow screens */
+    .container {
+        padding: 16px;
+        margin: 16px auto;
+    }
+
+    /* Standardize button text size for mobile readability */
+    .toggle-button {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    /* Standardize expandable body text size for mobile */
+    .collapsible-content {
+        font-size: 15px;
+        padding: 0 16px;
+    }
+
+    .collapsible-content.active {
+        padding: 12px 16px;
+    }
+}
