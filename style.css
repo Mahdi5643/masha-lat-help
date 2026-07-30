@@ -419,6 +419,81 @@ img {
     }
 }
 
+/* --- Standard Glassmorphism Button --- */
+.glass-btn {
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    
+    /* Glassmorphism styling */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px; /* Pill shape matching your form styles */
+    
+    padding: 12px 28px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Primary Accent Glassmorphism Button --- */
+.glass-btn-primary {
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    
+    /* Header Gradient styling with subtle transparency */
+    background: linear-gradient(135deg, rgba(67, 56, 202, 0.85), rgba(49, 46, 129, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    
+    padding: 12px 28px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 8px 24px rgba(67, 56, 202, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.glass-btn-primary:hover {
+    background: linear-gradient(135deg, rgba(67, 56, 202, 1), rgba(49, 46, 129, 1));
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(67, 56, 202, 0.45);
+}
+
+.glass-btn-primary:active {
+    transform: translateY(0);
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
