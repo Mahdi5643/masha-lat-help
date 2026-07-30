@@ -258,62 +258,7 @@
             </form>
         </div>
         
-<script>
-    const recipientEmail = "support@yourdomain.com";
-    
-    function getBodyTemplate() {
-    const mainEmail = document.getElementById('mainEmail').value;
-    const secondEmail = document.getElementById('secondEmail').value;
-    const name = document.getElementById('name').value;
-    const device = document.getElementById('device').value;
-    const message = document.getElementById('message').value;
-    
-    return `Main Email: ${mainEmail}\n` +
-           `Name: ${name}\n` +
-           `Email: ${secondEmail}\n` +
-           `Device: ${device}\n\n` +
-           `==============================\n\n` +
-           `${message}`;
-    }
-    
-    function validateForm() {
-        const form = document.getElementById('contactForm');
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return false;
-        }
-        return true;
-    }
-    
-    // Gmail Web Handler
-    document.getElementById('sendGmail').addEventListener('click', function() {
-        if (!validateForm()) return;
-        
-        const subject = document.getElementById('subject').value;
-        const body = getBodyTemplate();
-        
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1` +
-        `&to=${encodeURIComponent(recipientEmail)}` +
-        `&su=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(body)}`;
-        
-        window.open(gmailUrl, '_blank');
-    });
-    
-    // Default Mail App (mailto:) Handler
-    document.getElementById('sendMailto').addEventListener('click', function() {
-        if (!validateForm()) return;
-        
-        const subject = document.getElementById('subject').value;
-        const body = getBodyTemplate();
-        
-        const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}` +
-        `?subject=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(body)}`;
-        
-        window.location.href = mailtoUrl;
-    });
-</script>
+
 
         </div>
     
@@ -343,6 +288,8 @@
           });
         }
     </script>
-    
+
+	    <!-- Link your external JS file at the bottom of <body> -->
+    <script src="script.js"></script>
 </body> 
 </html> 
