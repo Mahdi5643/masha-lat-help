@@ -166,7 +166,14 @@ img {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   max-width: 500px;
   width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   /* REMOVED: overflow: hidden; (2026, July 31th, Friday, 1:25 AM GMT +3:30) */
+
+  /* FIX: Prevent click hijacking when closed */
+  pointer-events: none; /* Disables all click interaction when closed */
 
   /* FIX 1: Prevent dialog from exceeding screen height */
   /* FIX: Ensure dialog uses flex and caps at 85vh cleanly */
@@ -188,9 +195,11 @@ img {
 }
 
 /* Open State for Dialog */
+/* Re-enable clicks when the dialog is explicitly open */
 .custom-dialog[open] {
   opacity: 1;
   transform: scale(1) translateY(0);
+  pointer-events: auto; /* Enables click events ONLY when opened */
 }
 
 /* Starting style for smooth OPENING animation from hidden state */
