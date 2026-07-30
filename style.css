@@ -494,6 +494,40 @@ img {
     transform: translateY(0);
 }
 
+/* Flexible inline-colored glass button */
+.glass-btn-custom {
+    /* Uses --btn-color if set inline, defaults to Indigo */
+    --accent: var(--btn-color, #4338ca);
+    
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    
+    /* Base style using the inline CSS variable */
+    background: var(--accent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    padding: 12px 28px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hover state dynamically brightens whatever inline color was set */
+.glass-btn-custom:hover {
+    filter: brightness(1.25);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px var(--accent);
+}
+
+.glass-btn-custom:active {
+    transform: translateY(0);
+    filter: brightness(1);
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
