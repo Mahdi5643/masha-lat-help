@@ -220,12 +220,21 @@ img {
 /* --- Dialog Layout & Content Styling --- */
 
 /* FIX 2: Convert card container to Flexbox to handle sticky headers/footers */
+/* Update your existing .dialog-card rule */
 .dialog-card {
   padding: 24px;
   display: flex;
   flex-direction: column;
   max-height: 85vh; /* Sync max height with dialog outer constraint */
   box-sizing: border-box;
+}
+
+/* ADD THIS MEDIA QUERY right under .dialog-card: */
+@media (max-width: 600px) {
+  .dialog-card {
+    padding: 16px; /* Reduces outer padding on mobile to free up space */
+    max-height: 90vh; /* Gives dialog slightly more room on small screens */
+  }
 }
 
 .dialog-header {
