@@ -165,8 +165,7 @@ img {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   max-width: 500px;
   width: 90%;
-  overflow: hidden;
-
+  /* REMOVED: overflow: hidden; */
   /* Smooth Entrance & Exit Transition Setup */
   opacity: 0;
   transform: scale(0.92) translateY(12px);
