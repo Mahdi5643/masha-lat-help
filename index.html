@@ -189,7 +189,33 @@
 		</div>
 	</div>
 </div>
-	
+	<!-- Example Trigger Button (styled like your pill toggle buttons) -->
+<button class="toggle-button" onclick="document.getElementById('siteModal').showModal()">
+  <span>Open Custom Dialog</span>
+</button>
+
+<!-- Native HTML Dialog -->
+<dialog id="siteModal" class="custom-dialog">
+  <div class="dialog-card">
+    <header class="dialog-header">
+      <h2>Modal Title</h2>
+      <!-- Close X Button -->
+      <button class="dialog-close-btn" aria-label="Close dialog" onclick="document.getElementById('siteModal').close()">
+        &times;
+      </button>
+    </header>
+    
+    <div class="dialog-body">
+      <p>This dialog uses native HTML <code>&lt;dialog&gt;</code> with custom CSS glassmorphism and smooth entry/exit animations tuned to your site's dark theme.</p>
+    </div>
+
+    <footer class="dialog-footer">
+      <button class="dialog-action-btn secondary" onclick="document.getElementById('siteModal').close()">Cancel</button>
+      <button class="dialog-action-btn primary" onclick="document.getElementById('siteModal').close()">Confirm</button>
+    </footer>
+  </div>
+</dialog>
+
     <script>
         // Get all buttons with the class 'toggle-button'
         var buttons = document.getElementsByClassName("toggle-button");
