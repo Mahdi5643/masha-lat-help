@@ -546,14 +546,7 @@ img {
     }
 }
 
-.center-button-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 16px 0;
-}
- 
+
 /* Mobile responsiveness matching your existing query limit */ /* Note from Mahdi5643: I moved this from a few lines up to make the buttons don't mess with the accordion bars. (2026, July 30th, Thursday, 9:08 PM GMT +3:30) */
 @media (max-width: 600px) {
     .button-group {
