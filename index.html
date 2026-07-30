@@ -191,32 +191,135 @@
 </div>
 	<!-- Example Trigger Button (styled like your pill toggle buttons) -->
 <div class="container" style="background: rgba(75, 85, 99, 0.15); border-color: rgba(107, 114, 128, 0.4);">
-	<button class="toggle-button" onclick="document.getElementById('siteModal').showModal()">
-		<span>Open Custom Dialog</span>
-	</button>
-</div>
-
-<!-- Native HTML Dialog -->
-<dialog id="siteModal" class="custom-dialog">
-  <div class="dialog-card">
-    <header class="dialog-header">
-      <h2>Modal Title</h2>
-      <!-- Close X Button -->
-      <button class="dialog-close-btn" aria-label="Close dialog" onclick="document.getElementById('siteModal').close()">
-        &times;
-      </button>
-    </header>
+    <!-- Example Trigger Button (styled like your pill toggle buttons) -->
+    <button class="toggle-button" onclick="document.getElementById('siteModal').showModal()">
+        <span>ارتباط با ما</span>
+    </button>
     
-    <div class="dialog-body">
-      <p>This dialog uses native HTML <code>&lt;dialog&gt;</code> with custom CSS glassmorphism and smooth entry/exit animations tuned to your site's dark theme.</p>
-    </div>
+    <!-- Native HTML Dialog -->
+    <dialog id="siteModal" class="custom-dialog">
+        <div class="dialog-card">
+        <header class="dialog-header">
+            <h2>ارتباط با ما</h2>
+            <!-- Close X Button -->
+            <button class="dialog-close-btn" aria-label="Close dialog" onclick="document.getElementById('siteModal').close()">
+            &times;
+            </button>
+        </header>
+        
+        <div class="dialog-body">
+            <form id="contactForm" class="contact-form">
+                
+                <div class="form-group">
+                    <label for="mainEmail">Main Email Address:</label>
+                    <input type="email" id="mainEmail" placeholder="your.primary@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="secondEmail">Second Email Address:</label>
+                    <input type="email" id="secondEmail" placeholder="your.secondary@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="device">Device:</label>
+                    <input type="text" id="device" placeholder="e.g. iPhone 15 Pro" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" required>
+                        <option value="selected">Select a subject...</option>
+                        <option value="Test1">Test1</option>
+                        <option value="Test2">Test2</option>
+                        <option value="Test3">Test3</option>
+                        <option value="Test4">Test4</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" rows="5" placeholder="Enter your message..." required></textarea>
+                </div>
+                
+                <div class="button-group">
+                    <button type="button" id="sendGmail" class="form-btn btn-gmail">Open in Gmail Web</button>
+                    <button type="button" id="sendMailto" class="form-btn btn-default">Open Default Mail App</button>
+                </div>
+            
+            </form>
+        </div>
+        
+<script>
+    const recipientEmail = "support@yourdomain.com";
+    
+    function getBodyTemplate() {
+    const mainEmail = document.getElementById('mainEmail').value;
+    const secondEmail = document.getElementById('secondEmail').value;
+    const name = document.getElementById('name').value;
+    const device = document.getElementById('device').value;
+    const message = document.getElementById('message').value;
+    
+    return `Main Email: ${mainEmail}\n` +
+           `Name: ${name}\n` +
+           `Email: ${secondEmail}\n` +
+           `Device: ${device}\n\n` +
+           `==============================\n\n` +
+           `${message}`;
+    }
+    
+    function validateForm() {
+        const form = document.getElementById('contactForm');
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return false;
+        }
+        return true;
+    }
+    
+    // Gmail Web Handler
+    document.getElementById('sendGmail').addEventListener('click', function() {
+        if (!validateForm()) return;
+        
+        const subject = document.getElementById('subject').value;
+        const body = getBodyTemplate();
+        
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1` +
+        `&to=${encodeURIComponent(recipientEmail)}` +
+        `&su=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
+        
+        window.open(gmailUrl, '_blank');
+    });
+    
+    // Default Mail App (mailto:) Handler
+    document.getElementById('sendMailto').addEventListener('click', function() {
+        if (!validateForm()) return;
+        
+        const subject = document.getElementById('subject').value;
+        const body = getBodyTemplate();
+        
+        const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
+        
+        window.location.href = mailtoUrl;
+    });
+</script>
 
-    <footer class="dialog-footer">
-      <button class="dialog-action-btn secondary" onclick="document.getElementById('siteModal').close()">Cancel</button>
-      <button class="dialog-action-btn primary" onclick="document.getElementById('siteModal').close()">Confirm</button>
-    </footer>
-  </div>
-</dialog>
+        </div>
+    
+        <footer class="dialog-footer">
+            <button class="dialog-action-btn secondary" onclick="document.getElementById('siteModal').close()">Cancel</button>
+            <button class="dialog-action-btn primary" onclick="document.getElementById('siteModal').close()">Confirm</button>
+        </footer>
+        </div>
+    </dialog>
+</div>
 
     <script>
         // Get all buttons with the class 'toggle-button'
