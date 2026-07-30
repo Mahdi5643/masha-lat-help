@@ -520,23 +520,25 @@ img {
 
 /* --- Glassmorphic Ripple Effect --- */
 
-/* Ensures the button acts as the positioning anchor & crops the ripple */
-.glass-btn, .glass-btn-primary {
+/* Anchor & clip ripples ONLY on standard action buttons (EXCLUDE .toggle-button) */ /* Allows clicks to pass through */ /* Prevents ripple from blocking accordion clicks */
+.glass-btn, 
+.glass-btn-primary, 
+.form-btn, 
+.dialog-action-btn {
     position: relative;
     overflow: hidden;
 }
 
-/* The expanding translucent circle */
+/* Ripple Element */ /* The expanding translucent circle */
 .ripple {
     position: absolute;
     border-radius: 50%;
     transform: scale(0);
     animation: glass-ripple-anim 0.6s linear;
     background: rgba(255, 255, 255, 0.35); /* White glass glow */
-    pointer-events: none; /* Allows clicks to pass through */ /* Prevents ripple from blocking accordion clicks */
+    pointer-events: none; /* ESSENTIAL: Prevents ripple from intercepting clicks */ /* Allows clicks to pass through */ /* Prevents ripple from blocking accordion clicks */
 }
 
-/* Ripple Expansion Keyframes */
 @keyframes glass-ripple-anim {
     to {
         transform: scale(4);
