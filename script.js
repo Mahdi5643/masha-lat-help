@@ -79,19 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
 // --- script.js ---
 
 function createGlassRipple(event) {
+    // Ignore accordions explicitly if passed
+    if (event.currentTarget.classList.contains('toggle-button')) return;
+
     const button = event.currentTarget;
 
-    // Remove any existing ripples to handle rapid clicking
+    // Remove existing ripple // Remove any existing ripples to handle rapid clicking
     const existingRipple = button.querySelector(".ripple");
     if (existingRipple) {
         existingRipple.remove();
     }
 
-    // Create the ripple element
+    // Create ripple circle // Create the ripple element
     const circle = document.createElement("span");
     const diameter = Math.max(button.clientWidth, button.clientHeight);
     const radius = diameter / 2;
@@ -107,11 +109,13 @@ function createGlassRipple(event) {
     button.appendChild(circle);
 }
 
-// Automatically attach ripple effect to all glass buttons when the page loads
+// Attach ripple ONLY to action buttons, NOT .toggle-button // Automatically attach ripple effect to all glass buttons when the page loads
 document.addEventListener("DOMContentLoaded", () => {
-    const glassButtons = document.querySelectorAll(".glass-btn, .glass-btn-primary, .form-btn");
+    const actionButtons = document.querySelectorAll(
+        ".glass-btn, .glass-btn-primary, .form-btn, .dialog-action-btn"
+    );
     
-    glassButtons.forEach(button => {
+    actionButtons.forEach(button => {
         button.addEventListener("click", createGlassRipple);
     });
 });
