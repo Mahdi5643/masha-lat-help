@@ -115,3 +115,17 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", createGlassRipple);
     });
 });
+
+const btn = document.getElementById('contact-us');
+
+function firstFunction() {
+  createGlassRipple(event);
+}
+
+function secondFunction() {
+  document.getElementById('siteModal').showModal();
+}
+
+// Attach both functions to the same button
+btn.addEventListener('click', firstFunction);
+btn.addEventListener('click', secondFunction);
