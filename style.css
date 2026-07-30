@@ -154,6 +154,7 @@ img {
 
 /* --- Custom Glassmorphism Dialog --- */
 
+/* Update .custom-dialog */
 .custom-dialog {
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -168,8 +169,13 @@ img {
   /* REMOVED: overflow: hidden; (2026, July 31th, Friday, 1:25 AM GMT +3:30) */
 
   /* FIX 1: Prevent dialog from exceeding screen height */
-  max-height: 85vh; 
+  /* FIX: Ensure dialog uses flex and caps at 85vh cleanly */
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden; /* Prevents whole dialog from spilling over border-radius */
+
+  /* Keep your existing animation & transition properties below this */
 	
   /* Smooth Entrance & Exit Transition Setup */
   opacity: 0;
@@ -225,8 +231,10 @@ img {
   padding: 24px;
   display: flex;
   flex-direction: column;
+  height: 100%;
   max-height: 85vh; /* Sync max height with dialog outer constraint */
   box-sizing: border-box;
+  overflow: hidden; /* Clips scrolling content within card borders */
 }
 
 /* ADD THIS MEDIA QUERY right under .dialog-card: */
@@ -244,7 +252,7 @@ img {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding-bottom: 12px;
   margin-bottom: 16px;
-  flex-shrink: 0; /* Ensures header never shrinks */
+  flex-shrink: 0; /* Ensures header never shrinks */ /* Keeps header fixed at top */
 }
 
 .dialog-header h2 {
@@ -281,8 +289,9 @@ img {
   font-size: 16px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.88);
-  overflow-y: auto; /* Adds scrollbar only inside body when content overflows */
+  overflow-y: auto; /* Adds scrollbar only inside body when content overflows */ /* Handles the scrolling inside middle section */
   padding-right: 6px; /* Prevents scrollbar from covering text */
+  margin-bottom: 16px; /* Creates guaranteed space above the footer */
 }
 
 /* Webkit scrollbar styling for seamless glass look */
@@ -301,14 +310,16 @@ img {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 16px; /* Used to be 24px (2026, July 31th, Friday, 1:34 AM GMT +3:30) */
+  /* REMOVED margin-top: 16px; */ /* Used to be 24px (2026, July 31th, Friday, 1:34 AM GMT +3:30) */
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0; /* Keeps footer fixed at bottom */
-  margin-bottom: 0; /* Prevents margin collapses */
+  /* REMOVED margin-bottom: 0; */ /* Prevents margin collapses */
+  background: transparent;
 }
 
 /* Footer Action Buttons */
+/* DELETE or REMOVE this snippet from your CSS: */
 /* FIX 4: Secure padding around the footer buttons */
 /* Replace your .dialog-footer block with this: */
 .dialog-action-btn {
