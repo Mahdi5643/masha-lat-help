@@ -533,7 +533,7 @@ img {
     transform: scale(0);
     animation: glass-ripple-anim 0.6s linear;
     background: rgba(255, 255, 255, 0.35); /* White glass glow */
-    pointer-events: none; /* Allows clicks to pass through */
+    pointer-events: none; /* Allows clicks to pass through */ /* Prevents ripple from blocking accordion clicks */
 }
 
 /* Ripple Expansion Keyframes */
