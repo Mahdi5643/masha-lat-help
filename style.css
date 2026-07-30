@@ -304,10 +304,13 @@ img {
   margin-top: 16px; /* Used to be 24px (2026, July 31th, Friday, 1:34 AM GMT +3:30) */
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0; /* Keeps footer fixed at bottom */
+  margin-bottom: 0; /* Prevents margin collapses */
 }
 
 /* Footer Action Buttons */
 /* FIX 4: Secure padding around the footer buttons */
+/* Replace your .dialog-footer block with this: */
 .dialog-action-btn {
   font-family: 'Vazirmatn', sans-serif;
   padding: 8px 20px;
@@ -316,6 +319,17 @@ img {
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0; /* Ensures footer stays visible at bottom without shrinking */
+}
+
+@media (max-width: 480px) {
+  .dialog-footer {
+    flex-direction: column-reverse; /* Stacks buttons neatly; primary action stays on top */
+  }
+  
+  .dialog-action-btn {
+    width: 100%; /* Full width buttons for easy mobile tapping */
+    text-align: center;
+  }
 }
 
 .dialog-action-btn.primary {
