@@ -15,6 +15,71 @@
       });
     }
 
+const recipientEmail = "support@yourdomain.com";
+
+function getBodyTemplate() {
+    const mainEmail = document.getElementById('mainEmail').value;
+    const secondEmail = document.getElementById('secondEmail').value;
+    const name = document.getElementById('name').value;
+    const device = document.getElementById('device').value;
+    const message = document.getElementById('message').value;
+
+    return `Main Email: ${mainEmail}\n` +
+           `Name: ${name}\n` +
+           `Email: ${secondEmail}\n` +
+           `Device: ${device}\n\n` +
+           `==============================\n\n` +
+           `${message}`;
+}
+
+function validateForm() {
+    const form = document.getElementById('contactForm');
+    if (!form || !form.checkValidity()) {
+        form?.reportValidity();
+        return false;
+    }
+    return true;
+}
+
+// Wait for the HTML document to fully load before attaching event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Gmail Web Handler
+    const sendGmailBtn = document.getElementById('sendGmail');
+    if (sendGmailBtn) {
+        sendGmailBtn.addEventListener('click', function() {
+            if (!validateForm()) return;
+
+            const subject = document.getElementById('subject').value;
+            const body = getBodyTemplate();
+
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1` +
+                `&to=${encodeURIComponent(recipientEmail)}` +
+                `&su=${encodeURIComponent(subject)}` +
+                `&body=${encodeURIComponent(body)}`;
+
+            window.open(gmailUrl, '_blank');
+        });
+    }
+
+    // Default Mail App (mailto:) Handler
+    const sendMailtoBtn = document.getElementById('sendMailto');
+    if (sendMailtoBtn) {
+        sendMailtoBtn.addEventListener('click', function() {
+            if (!validateForm()) return;
+
+            const subject = document.getElementById('subject').value;
+            const body = getBodyTemplate();
+
+            const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}` +
+                `?subject=${encodeURIComponent(subject)}` +
+                `&body=${encodeURIComponent(body)}`;
+
+            window.location.href = mailtoUrl;
+        });
+    }
+});
+
 // --- script.js ---
 
 function createGlassRipple(event) {
