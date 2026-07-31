@@ -223,7 +223,7 @@
                 
                 <div class="form-group">
                     <label for="name">اسم مشَ لات:</label>
-                    <input type="text" id="name" placeholder="برای مثال ooss_select" required>
+                    <input type="text" id="name" placeholder="برای مثال ooss_gholam" required>
                 </div>
                 
                 <div class="form-group">
@@ -232,7 +232,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="subject">موضوع</label>
+                    <label for="subject">موضوع:</label>
                     <select id="subject" required>
                         <option value="selected">--انتخاب موضوع--</option>
                         <option value="Account">لاگین / اکانت</option>
@@ -243,7 +243,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">پیام</label>
+                    <label for="message">پیام:</label>
                     <textarea id="message" rows="5" placeholder="پیام خود را بنویسید..." required></textarea>
                 </div>
             </form>
@@ -256,7 +256,7 @@
         <footer class="dialog-footer">
 			<div class="button-group">
                 <button class="dialog-action-btn secondary" onclick="document.getElementById('siteModal').close()">Cancel</button>
-                <button type="button" id="sendMailto" class="form-btn btn-default">Open Default Mail App</button>
+				<button class="dialog-action-btn primary form-btn btn-default" type="button" id="sendMailto">Confirm</button>
 			</div>
         </footer>
         </div>
