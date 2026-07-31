@@ -136,7 +136,7 @@ body {
 }
 
 .collapsible-content.active {
-    max-height: 100vh; /* Note from Mahdi5643: This used to be 45em, but I asked Gemini to find any structural errors in this CSS, and it said that this is too low, and said to change it to 2000px or 100vh. (2026, July 30th, Thursday, 2:09 AM GMT +3:30) */ /* One more note: Used to be 2000px (2026, July 31th, Friday, 3:45 PM GMT +3:30) */ 
+    max-height: 1000px; /* Note from Mahdi5643: This used to be 45em, but I asked Gemini to find any structural errors in this CSS, and it said that this is too low, and said to change it to 2000px or 100vh. (2026, July 30th, Thursday, 2:09 AM GMT +3:30) */ /* One more note: Used to be 2000px (2026, July 31th, Friday, 3:45 PM GMT +3:30) */ 
     opacity: 1;
 }
 
