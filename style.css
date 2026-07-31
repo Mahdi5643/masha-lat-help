@@ -136,7 +136,8 @@ body {
 }
 
 .collapsible-content.active {
-    max-height: 1000px; /* Note from Mahdi5643: This used to be 45em, but I asked Gemini to find any structural errors in this CSS, and it said that this is too low, and said to change it to 2000px or 100vh. (2026, July 30th, Thursday, 2:09 AM GMT +3:30) */ /* One more note: Used to be 2000px (2026, July 31th, Friday, 3:45 PM GMT +3:30) */ 
+    max-height: 2000px; /* Note from Mahdi5643: This used to be 45em, but I asked Gemini to find any structural errors in this CSS, and it said that this is too low, and said to change it to 2000px or 100vh. (2026, July 30th, Thursday, 2:09 AM GMT +3:30) */
+    padding: 16px 24px; 
     opacity: 1;
 }
 
@@ -301,8 +302,7 @@ img {
   color: rgba(255, 255, 255, 0.88);
   overflow-y: auto; /* Adds scrollbar only inside body when content overflows */ /* Handles the scrolling inside middle section */
   padding-right: 6px; /* Prevents scrollbar from covering text */
-  /* FIX: Remove margin-bottom to make top and bottom gaps symmetrical */
-  margin-bottom: 0px; /* Creates guaranteed space above the footer */ /* Used to be 16px (2026, July 31th, Friday, 3:42 PM GMT +3:30)
+  margin-bottom: 16px; /* Creates guaranteed space above the footer */
 }
 
 /* Webkit scrollbar styling for seamless glass look */
@@ -329,7 +329,6 @@ img {
   flex-shrink: 0; /* Keeps footer fixed at bottom */
   /* REMOVED margin-bottom: 0; */ /* Prevents margin collapses */
   /* REMOVED background: transparent; */
-  /* Ensure width inherits naturally without breaking parent padding bounds */
   width: 100%;
   box-sizing: border-box; /* Keeps horizontal line within parent padding */
 }
@@ -774,4 +773,4 @@ img {
 .top-header h1 {
     margin: 0;
     color: #ffffff;
-}
+	}
