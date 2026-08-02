@@ -324,7 +324,7 @@ img {
   align-items: center; /* Prevents buttons from stretching vertically */
   gap: 12px;
   margin-top: 12px; /* Used to be 24px (2026, July 31th, Friday, 1:34 AM GMT +3:30) */
-  padding-top: 6px;
+  padding-top: 4px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0; /* Keeps footer fixed at bottom */
   /* REMOVED margin-bottom: 0; */ /* Prevents margin collapses */
