@@ -331,6 +331,7 @@ img {
   /* REMOVED background: transparent; */
   width: 100%;
   box-sizing: border-box; /* Keeps horizontal line within parent padding */
+  padding-bottom: 12px; /* Added by Mahdi5643 to fix buttons sticking to the bottom of the dialog footer (2026, August 3rd, Monday, 1:50 AM GMT +3:30) */
 }
 
 /* Footer Action Buttons */
