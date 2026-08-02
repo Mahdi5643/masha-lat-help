@@ -66,7 +66,7 @@
       });
     }
 
-const recipientEmail = "support@yourdomain.com";
+const recipientEmail = "mshltspprt@gmail.com";
 
 function getBodyTemplate() {
     const mainEmail = document.getElementById('mainEmail').value;
@@ -75,11 +75,11 @@ function getBodyTemplate() {
     const device = document.getElementById('device').value;
     const message = document.getElementById('message').value;
 
-    return `Main Email: ${mainEmail}\n` +
-           `Name: ${name}\n` +
-           `Email: ${secondEmail}\n` +
-           `Device: ${device}\n\n` +
-           `==============================\n\n` +
+    return `ایمیل: ${mainEmail}\n` +
+           `اسم مشَ لات: ${name}\n` +
+           `ایمیل مشَ لات: ${secondEmail}\n` +
+           `دستگاه: ${device}\n\n` +
+           `====================================\n\n` +
            `${message}`;
 }
 
