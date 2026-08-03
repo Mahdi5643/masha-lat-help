@@ -960,6 +960,88 @@ img {
   box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
 }
 
+/* ==========================================================================
+   1. GLOBAL THEME VARIABLES
+   ========================================================================== */
+
+:root {
+  /* Default Light Mode Focus Variables */
+  --focus-ring-color: #2563eb;          /* Primary Blue (WCAG 3:1+ vs white) */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  
+  /* Read-only / Neutral Focus Variant */
+  --focus-ring-neutral-color: #64748b;
+  --focus-ring-neutral-shadow: 0 0 0 4px rgba(100, 116, 139, 0.2);
+}
+
+/* Automatic Dark Mode (System preference or class-based override) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Focus Variables (High-luminance cyan for dark slate/black backgrounds) */
+    --focus-ring-color: #22d3ee;        /* Bright Cyan 400 */
+    --focus-ring-offset: 3px;           /* Extra gap for dark contrast */
+    --focus-ring-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
+
+    --focus-ring-neutral-color: #cbd5e1;
+    --focus-ring-neutral-shadow: 0 0 8px rgba(203, 213, 225, 0.25);
+  }
+}
+
+/* Class-based Dark Mode Override (e.g., toggled via JavaScript) */
+[data-theme="dark"] {
+  --focus-ring-color: #22d3ee;
+  --focus-ring-offset: 3px;
+  --focus-ring-shadow: 0 0 8px rgba(34, 211, 238, 0.35);
+  --focus-ring-neutral-color: #cbd5e1;
+  --focus-ring-neutral-shadow: 0 0 8px rgba(203, 213, 225, 0.25);
+}
+
+
+/* ==========================================================================
+   2. REUSABLE UTILITY CLASS / MIXIN EQUIVALENT
+   ========================================================================== */
+
+/* Universal Focus Reset (Clears default mouse outlines globally) */
+:focus {
+  outline: none;
+}
+
+/* Universal Focus Utility (Apply to any interactive element) */
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--focus-ring-shadow);
+}
+
+
+/* ==========================================================================
+   3. COMPONENT-LEVEL VARIANTS & OVERRIDES
+   ========================================================================== */
+
+/* Read-Only Override: Locally redefines variable without duplicating rules */
+.form-input:read-only:focus-visible {
+  --focus-ring-color: var(--focus-ring-neutral-color);
+  --focus-ring-shadow: var(--focus-ring-neutral-shadow);
+}
+
+/* Error State Override */
+.form-input.has-error:focus-visible {
+  --focus-ring-color: #ef4444; /* Red 500 */
+  --focus-ring-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25);
+}
+
+/* Inset Variant for Tight Layouts (e.g. data table cells) */
+.table-cell-action:focus-visible {
+  --focus-ring-offset: -3px;
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
