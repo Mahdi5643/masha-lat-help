@@ -898,6 +898,68 @@ img {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
+/* Base field styles */
+.form-field {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Standard focus state for editable fields */
+.form-field:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+
+/* ==========================================================================
+   1. DISABLED ELEMENTS (:disabled or [aria-disabled="true"])
+   ========================================================================== */
+
+.form-field:disabled,
+.form-field[aria-disabled="true"] {
+  background-color: #f1f5f9; /* Slate 100 */
+  color: #94a3b8;            /* Slate 400 - Low contrast signals inert state */
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Explicitly remove focus rings if a disabled element somehow receives focus */
+.form-field:disabled:focus,
+.form-field:disabled:focus-visible,
+.form-field[aria-disabled="true"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #e2e8f0 !important;
+}
+
+
+/* ==========================================================================
+   2. READ-ONLY ELEMENTS (:read-only)
+   ========================================================================== */
+
+.form-field:read-only {
+  background-color: #f8fafc; /* Slate 50 - Slightly off-white */
+  color: #334155;            /* Slate 700 - Full contrast readability */
+  border-color: #cbd5e1;
+  cursor: default;           /* Regular arrow pointer, not text beam */
+}
+
+/* Distinct focus state for Read-Only: Neutral gray ring instead of active blue */
+.form-field:read-only:focus-visible {
+  outline: 2px solid #64748b; /* Neutral Slate 500 ring */
+  outline-offset: 1px;
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
