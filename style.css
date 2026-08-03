@@ -640,6 +640,107 @@ img {
   outline: none;
 }
 
+/* Base button styling */
+.pulse-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0f172a; /* Slate 900 */
+  border: 1px solid #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.pulse-btn:hover {
+  background-color: #1e293b;
+}
+
+/* 1. Reset standard focus for mouse clicks */
+.pulse-btn:focus {
+  outline: none;
+}
+
+/* 2. Apply animated pulse ring on keyboard focus */
+.pulse-btn:focus-visible {
+  /* Crisp inner border ring for high accessibility contrast */
+  outline: 2px solid #6366f1; /* Indigo 500 */
+  outline-offset: 3px;
+  
+  /* Trigger the infinite pulse animation */
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 3. Define the glowing pulse keyframes */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0px rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    /* Expand the glow ring outwards while fading opacity */
+    box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(99, 102, 241, 0);
+  }
+}
+
+/* 4. Respect accessibility settings for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pulse-btn:focus-visible {
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.5);
+  }
+}
+
+/* Base form field styling */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1; /* Neutral slate border */
+  border-radius: 6px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* 1. Clear browser default outlines */
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+}
+
+/* 2. Custom focus state (Applies on both click and keyboard tab-navigation) */
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  /* Shift the actual input border color to match primary theme */
+  border-color: #2563eb; 
+
+  /* Crisp high-contrast outline offset for accessibility */
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+
+  /* Subtle ring fill to soften the visual transition */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* 3. Error state with corresponding focus ring */
+.form-input.is-error,
+.form-textarea.is-error {
+  border-color: #dc2626;
+}
+
+.form-input.is-error:focus-visible,
+.form-textarea.is-error:focus-visible {
+  border-color: #dc2626;
+  outline-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
 /* Mobile responsiveness matching your existing query limit */ /* Note from Mahdi5643: I moved this from a few lines up to make the buttons don't mess with the accordion bars. (2026, July 30th, Thursday, 9:08 PM GMT +3:30) */
 @media (max-width: 600px) {
     .button-group {
