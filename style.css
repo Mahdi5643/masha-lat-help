@@ -753,6 +753,151 @@ img {
     }
 }
 
+/* Base container context for dark mode */
+.dark-mode-container {
+  background-color: #0f172a; /* Slate 900 */
+  color: #f8fafc;
+  padding: 32px;
+}
+
+/* Common button styling */
+.dark-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Clear default browser outline on all examples */
+.dark-btn:focus {
+  outline: none;
+}
+
+
+/* -------------------------------------------------------------------
+   APPROACH 2: Double-Ring / High-Contrast Sandwich (Maximum Accessibility)
+   Best for: Strict WCAG AAA compliance, variable/unpredictable dark backgrounds
+   ------------------------------------------------------------------- */
+.btn-dual {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-dual:focus-visible {
+  /* 1. Inner dark ring creates physical separation from the button color */
+  outline: 2px solid #0f172a;
+  outline-offset: 2px;
+  /* 2. Outer bright white/yellow ring ensures visibility on any background */
+  box-shadow: 0 0 0 4px #facc15; /* Yellow 400 */
+}
+
+/* ==========================================================================
+   1. CUSTOM CHECKBOXES & RADIO BUTTONS
+   ========================================================================== */
+
+/* Container wrapper */
+.control-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+/* Visually hide native inputs while keeping them accessible to screen readers */
+.control-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Custom Checkbox visual box */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #64748b;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Custom Radio visual circle */
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #64748b;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Checked States */
+.control-input:checked + .custom-checkbox {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.control-input:checked + .custom-radio {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 4px #2563eb;
+}
+
+/* ACCESSIBLE FOCUS RINGS: Triggered when native hidden input gets keyboard focus */
+.control-input:focus-visible + .custom-checkbox,
+.control-input:focus-visible + .custom-radio {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+
+/* ==========================================================================
+   2. SELECT DROPDOWNS
+   ========================================================================== */
+
+/* Native select element styling */
+.custom-select {
+  appearance: none; /* Strip default browser arrow/styles */
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  /* Custom SVG dropdown arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%20475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Clear default focus */
+.custom-select:focus {
+  outline: none;
+}
+
+/* Accessible focus ring on dropdown */
+.custom-select:focus-visible {
+  border-color: #2563eb;
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
