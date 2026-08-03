@@ -630,6 +630,15 @@ img {
     }
 }
 
+/* 1. Remove the light blue overlay on mobile devices (iOS/Android Safari & Chrome) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 2. Remove default focus outlines ONLY on mouse click/touch, keeping them for keyboard users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
 
 /* Mobile responsiveness matching your existing query limit */ /* Note from Mahdi5643: I moved this from a few lines up to make the buttons don't mess with the accordion bars. (2026, July 30th, Thursday, 9:08 PM GMT +3:30) */
 @media (max-width: 600px) {
