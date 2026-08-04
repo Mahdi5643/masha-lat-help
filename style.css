@@ -1042,6 +1042,26 @@ textarea:focus-visible {
   --focus-ring-offset: -3px;
 }
 
+ul.custom-list {
+  list-style: none; /* Hide default bullets */
+  padding-left: 0;
+}
+
+ul.custom-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+ul.custom-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #06d6a0;
+  font-weight: bold;
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
