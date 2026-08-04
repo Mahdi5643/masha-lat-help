@@ -1042,26 +1042,42 @@ textarea:focus-visible {
   --focus-ring-offset: -3px;
 }
 
+/* Base LTR styles */
 ul.custom-list {
-  list-style: none; /* Hide default bullets */
+  list-style: none;
   padding-left: 0;
 }
 
 ul.custom-list li {
   position: relative;
   padding-left: 1.8rem;
+  padding-right: 0;
   margin-bottom: 0.5rem;
 }
 
 ul.custom-list li::before {
-  content: "✓";
+  content: "\2713";
   position: absolute;
   left: 0;
+  right: auto;
   top: 0;
   color: #06d6a0;
   font-weight: bold;
 }
 
+/* RTL Specific Overrides */
+[dir="rtl"] ul.custom-list li,
+ul.custom-list[dir="rtl"] li {
+  padding-left: 0;
+  padding-right: 1.8rem;
+}
+
+[dir="rtl"] ul.custom-list li::before,
+ul.custom-list[dir="rtl"] li::before {
+  left: auto;
+  right: 0;
+}
+	
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
