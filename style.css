@@ -1051,13 +1051,13 @@ ul.custom-list {
 ul.custom-list li {
   position: relative;
   /* Reduced from 1.8rem to 1.1rem to bring text closer to the bullet */
-  padding-inline-start: 0.6rem; 
+  padding-inline-start: 1.1rem; 
   padding-right: 0;
   margin-bottom: 0.5rem;
 }
 
 ul.custom-list li::before {
-  content: "\2713";
+  content: "🚀"; /* \2713 */
   position: absolute;
   left: 0;
   right: auto;
