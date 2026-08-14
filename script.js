@@ -212,3 +212,169 @@ function secondFunction() {
 // Attach both functions to the same button
 btn.addEventListener('click', firstFunction);
 btn.addEventListener('click', secondFunction);
+
+// Store the original native alert function (optional, in case you need it later)
+window.nativeAlert = window.alert;
+
+// Override window.alert
+window.alert = function (message) {
+  // Prevent duplicate modals if multiple alerts trigger quickly
+  if (document.getElementById('custom-alert-modal')) return;
+
+  // 1. Create overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'custom-alert-modal';
+  overlay.className = 'custom-alert-overlay';
+
+  // 2. Create modal box markup
+  overlay.innerHTML = `
+    <div class="custom-alert-box">
+      <div class="custom-alert-header">
+        <span class="custom-alert-title">Notice</span>
+      </div>
+      <div class="custom-alert-body">
+        <p>${String(message).replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+      </div>
+      <div class="custom-alert-footer">
+        <button id="custom-alert-ok-btn" class="custom-alert-btn">OK</button>
+      </div>
+    </div>
+  `;
+
+  // 3. Append to body
+  document.body.appendChild(overlay);
+
+  // 4. Handle close action
+  const okBtn = overlay.querySelector('#custom-alert-ok-btn');
+  okBtn.focus();
+
+  const closeModal = () => {
+    overlay.classList.add('custom-alert-fade-out');
+    overlay.addEventListener('animationend', () => overlay.remove());
+  };
+
+  okBtn.addEventListener('click', closeModal);
+};
+
+// Preserve original native functions (good practice)
+window.nativeConfirm = window.confirm;
+window.nativePrompt = window.prompt;
+
+// Helper to escape HTML tags for security
+const escapeHtml = (str) =>
+  String(str ?? '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+// ==========================================
+// 1. OVERRIDE WINDOW.CONFIRM
+// Returns: Promise<boolean> (true or false)
+// ==========================================
+window.confirm = function (message) {
+  return new Promise((resolve) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-modal-overlay';
+    
+    overlay.innerHTML = `
+      <div class="custom-modal-box">
+        <div class="custom-modal-body">
+          <p>${escapeHtml(message)}</p>
+        </div>
+        <div class="custom-modal-footer">
+          <button class="custom-btn cancel-btn">Cancel</button>
+          <button class="custom-btn ok-btn">OK</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const okBtn = overlay.querySelector('.ok-btn');
+    const cancelBtn = overlay.querySelector('.cancel-btn');
+    okBtn.focus();
+
+    const close = (value) => {
+      overlay.classList.add('fade-out');
+      overlay.addEventListener('animationend', () => {
+        overlay.remove();
+        resolve(value);
+      });
+    };
+
+    okBtn.addEventListener('click', () => close(true));
+    cancelBtn.addEventListener('click', () => close(false));
+    
+    // Allow ESC key to cancel
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close(false);
+    });
+  });
+};
+
+// ==========================================
+// 2. OVERRIDE WINDOW.PROMPT
+// Returns: Promise<string | null>
+// ==========================================
+window.prompt = function (message, defaultValue = "") {
+  return new Promise((resolve) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-modal-overlay';
+    
+    overlay.innerHTML = `
+      <div class="custom-modal-box">
+        <div class="custom-modal-body">
+          <p>${escapeHtml(message)}</p>
+          <input type="text" class="custom-modal-input" value="${escapeHtml(defaultValue)}" />
+        </div>
+        <div class="custom-modal-footer">
+          <button class="custom-btn cancel-btn">Cancel</button>
+          <button class="custom-btn ok-btn">OK</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector('.custom-modal-input');
+    const okBtn = overlay.querySelector('.ok-btn');
+    const cancelBtn = overlay.querySelector('.cancel-btn');
+
+    // Focus input field automatically
+    input.focus();
+    input.select();
+
+    const close = (value) => {
+      overlay.classList.add('fade-out');
+      overlay.addEventListener('animationend', () => {
+        overlay.remove();
+        resolve(value);
+      });
+    };
+
+    okBtn.addEventListener('click', () => close(input.value));
+    cancelBtn.addEventListener('click', () => close(null));
+
+    // Handle Enter to confirm, ESC to cancel
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') close(input.value);
+      if (e.key === 'Escape') close(null);
+    });
+  });
+};
+
+async function handleDeleteAccount() {
+  // 1. Trigger custom confirm dialog
+  const userConfirmed = await confirm("Are you sure you want to delete your account?");
+  
+  if (!userConfirmed) {
+    console.log("Deletion cancelled.");
+    return;
+  }
+
+  // 2. Trigger custom prompt dialog
+  const userFeedback = await prompt("Please type 'DELETE' to confirm:", "");
+
+  if (userFeedback === "DELETE") {
+    console.log("Account deleted!");
+  } else {
+    console.log("Confirmation word did not match.");
+  }
+}
