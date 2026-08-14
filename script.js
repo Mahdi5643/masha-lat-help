@@ -257,108 +257,13 @@ window.alert = function (message) {
 };
 
 // Preserve original native functions (good practice)
+// Preserve native functions
 window.nativeConfirm = window.confirm;
 window.nativePrompt = window.prompt;
 
 // Helper to escape HTML tags for security
 const escapeHtml = (str) =>
   String(str ?? '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-
-// ==========================================
-// 1. OVERRIDE WINDOW.CONFIRM
-// Returns: Promise<boolean> (true or false)
-// ==========================================
-window.confirm = function (message) {
-  return new Promise((resolve) => {
-    const overlay = document.createElement('div');
-    overlay.className = 'custom-modal-overlay';
-    
-    overlay.innerHTML = `
-      <div class="custom-modal-box">
-        <div class="custom-modal-body">
-          <p>${escapeHtml(message)}</p>
-        </div>
-        <div class="custom-modal-footer">
-          <button class="custom-btn cancel-btn">Cancel</button>
-          <button class="custom-btn ok-btn">OK</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    const okBtn = overlay.querySelector('.ok-btn');
-    const cancelBtn = overlay.querySelector('.cancel-btn');
-    okBtn.focus();
-
-    const close = (value) => {
-      overlay.classList.add('fade-out');
-      overlay.addEventListener('animationend', () => {
-        overlay.remove();
-        resolve(value);
-      });
-    };
-
-    okBtn.addEventListener('click', () => close(true));
-    cancelBtn.addEventListener('click', () => close(false));
-    
-    // Allow ESC key to cancel
-    overlay.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close(false);
-    });
-  });
-};
-
-// ==========================================
-// 2. OVERRIDE WINDOW.PROMPT
-// Returns: Promise<string | null>
-// ==========================================
-window.prompt = function (message, defaultValue = "") {
-  return new Promise((resolve) => {
-    const overlay = document.createElement('div');
-    overlay.className = 'custom-modal-overlay';
-    
-    overlay.innerHTML = `
-      <div class="custom-modal-box">
-        <div class="custom-modal-body">
-          <p>${escapeHtml(message)}</p>
-          <input type="text" class="custom-modal-input" value="${escapeHtml(defaultValue)}" />
-        </div>
-        <div class="custom-modal-footer">
-          <button class="custom-btn cancel-btn">Cancel</button>
-          <button class="custom-btn ok-btn">OK</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    const input = overlay.querySelector('.custom-modal-input');
-    const okBtn = overlay.querySelector('.ok-btn');
-    const cancelBtn = overlay.querySelector('.cancel-btn');
-
-    // Focus input field automatically
-    input.focus();
-    input.select();
-
-    const close = (value) => {
-      overlay.classList.add('fade-out');
-      overlay.addEventListener('animationend', () => {
-        overlay.remove();
-        resolve(value);
-      });
-    };
-
-    okBtn.addEventListener('click', () => close(input.value));
-    cancelBtn.addEventListener('click', () => close(null));
-
-    // Handle Enter to confirm, ESC to cancel
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') close(input.value);
-      if (e.key === 'Escape') close(null);
-    });
-  });
-};
 
 async function handleDeleteAccount() {
   // 1. Trigger custom confirm dialog
@@ -378,13 +283,6 @@ async function handleDeleteAccount() {
     console.log("Confirmation word did not match.");
   }
 }
-
-// Preserve native functions
-window.nativeConfirm = window.confirm;
-window.nativePrompt = window.prompt;
-
-const escapeHtml = (str) =>
-  String(str ?? '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /**
  * Shared modal builder with WCAG focus trapping & accessibility
@@ -467,6 +365,9 @@ function createModal({ bodyHtml, setup, onCancel }) {
 }
 
 // ==========================================
+// 1. OVERRIDE WINDOW.CONFIRM
+// Returns: Promise<boolean> (true or false)
+// ==========================================
 // OVERRIDE WINDOW.CONFIRM
 // ==========================================
 window.confirm = function (message) {
@@ -493,6 +394,9 @@ window.confirm = function (message) {
   });
 };
 
+// ==========================================
+// 2. OVERRIDE WINDOW.PROMPT
+// Returns: Promise<string | null>
 // ==========================================
 // OVERRIDE WINDOW.PROMPT
 // ==========================================
