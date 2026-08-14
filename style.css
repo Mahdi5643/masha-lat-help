@@ -1083,7 +1083,185 @@ ul.custom-list[dir="rtl"] li::before {
   left: auto;
   right: 0;
 }
-	
+
+/* Dark backdrop */
+.custom-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  animation: customAlertFadeIn 0.2s ease-out forwards;
+}
+
+/* Modal window box */
+.custom-alert-box {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #333333;
+}
+
+.custom-alert-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.custom-alert-body {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  word-break: break-word;
+}
+
+.custom-alert-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styled Button */
+.custom-alert-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.custom-alert-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Animations */
+@keyframes customAlertFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.custom-alert-fade-out {
+  animation: customAlertFadeOut 0.15s ease-in forwards;
+}
+
+@keyframes customAlertFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+/* Backdrop Overlay */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+/* Modal Window */
+.custom-modal-box {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+}
+
+.custom-modal-body p {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Input field for prompt() */
+.custom-modal-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  margin-top: 6px;
+  outline: none;
+}
+
+.custom-modal-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Footer & Buttons */
+.custom-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.custom-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+
+.ok-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.ok-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.cancel-btn {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.cancel-btn:hover {
+  background-color: #d1d5db;
+}
+
+/* Animations */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.custom-modal-overlay.fade-out {
+  animation: modalFadeOut 0.15s ease-in forwards;
+}
+
+@keyframes modalFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
