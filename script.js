@@ -69,7 +69,7 @@
 const recipientEmail = "mshltspprt@gmail.com";
 
 function getBodyTemplate() {
-function getBodyTemplate() {
+// 🔴 DUPLICATE FUNCTION DEFINITION HERE
     const mainEmail = document.getElementById('mainEmail').value;
     const secondEmail = document.getElementById('secondEmail').value;
     const name = document.getElementById('name').value;
