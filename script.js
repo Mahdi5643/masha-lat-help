@@ -378,3 +378,151 @@ async function handleDeleteAccount() {
     console.log("Confirmation word did not match.");
   }
 }
+
+// Preserve native functions
+window.nativeConfirm = window.confirm;
+window.nativePrompt = window.prompt;
+
+const escapeHtml = (str) =>
+  String(str ?? '').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/**
+ * Shared modal builder with WCAG focus trapping & accessibility
+ */
+function createModal({ bodyHtml, setup, onCancel }) {
+  return new Promise((resolve) => {
+    // 1. Remember element focused prior to modal opening
+    const previouslyFocused = document.activeElement;
+
+    // 2. Create backdrop overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-modal-overlay';
+
+    // 3. Render modal dialog container
+    overlay.innerHTML = `
+      <div class="custom-modal-box" role="dialog" aria-modal="true">
+        ${bodyHtml}
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const modalBox = overlay.querySelector('.custom-modal-box');
+
+    // 4. Close and cleanup handler
+    const close = (value) => {
+      overlay.classList.add('fade-out');
+      overlay.addEventListener('animationend', () => {
+        overlay.remove();
+        // Restore focus to original element
+        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+          previouslyFocused.focus();
+        }
+        resolve(value);
+      });
+    };
+
+    // Run specific element listeners (OK/Cancel buttons, input fields)
+    setup(overlay, close);
+
+    // 5. Query all focusable elements inside the modal box
+    const focusableSelectors = 'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusableElements = Array.from(modalBox.querySelectorAll(focusableSelectors));
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+    // 6. Focus Trapping & Keyboard Navigation Listener
+    overlay.addEventListener('keydown', (e) => {
+      // Escape Key
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close(onCancel());
+        return;
+      }
+
+      // Tab Key Focus Trapping
+      if (e.key === 'Tab') {
+        if (focusableElements.length === 0) {
+          e.preventDefault();
+          return;
+        }
+
+        // Shift + Tab (Backward)
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            lastFocusable.focus();
+            e.preventDefault();
+          }
+        } 
+        // Tab (Forward)
+        else {
+          if (document.activeElement === lastFocusable) {
+            firstFocusable.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+  });
+}
+
+// ==========================================
+// OVERRIDE WINDOW.CONFIRM
+// ==========================================
+window.confirm = function (message) {
+  return createModal({
+    bodyHtml: `
+      <div class="custom-modal-body">
+        <p>${escapeHtml(message)}</p>
+      </div>
+      <div class="custom-modal-footer">
+        <button class="custom-btn cancel-btn">Cancel</button>
+        <button class="custom-btn ok-btn">OK</button>
+      </div>
+    `,
+    onCancel: () => false,
+    setup: (overlay, close) => {
+      const okBtn = overlay.querySelector('.ok-btn');
+      const cancelBtn = overlay.querySelector('.cancel-btn');
+
+      okBtn.focus();
+
+      okBtn.addEventListener('click', () => close(true));
+      cancelBtn.addEventListener('click', () => close(false));
+    }
+  });
+};
+
+// ==========================================
+// OVERRIDE WINDOW.PROMPT
+// ==========================================
+window.prompt = function (message, defaultValue = "") {
+  return createModal({
+    bodyHtml: `
+      <div class="custom-modal-body">
+        <p>${escapeHtml(message)}</p>
+        <input type="text" class="custom-modal-input" value="${escapeHtml(defaultValue)}" />
+      </div>
+      <div class="custom-modal-footer">
+        <button class="custom-btn cancel-btn">Cancel</button>
+        <button class="custom-btn ok-btn">OK</button>
+      </div>
+    `,
+    onCancel: () => null,
+    setup: (overlay, close) => {
+      const input = overlay.querySelector('.custom-modal-input');
+      const okBtn = overlay.querySelector('.ok-btn');
+      const cancelBtn = overlay.querySelector('.cancel-btn');
+
+      input.focus();
+      input.select();
+
+      okBtn.addEventListener('click', () => close(input.value));
+      cancelBtn.addEventListener('click', () => close(null));
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') close(input.value);
+      });
+    }
+  });
+};
