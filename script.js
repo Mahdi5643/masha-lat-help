@@ -69,16 +69,22 @@
 const recipientEmail = "mshltspprt@gmail.com";
 
 function getBodyTemplate() {
+function getBodyTemplate() {
     const mainEmail = document.getElementById('mainEmail').value;
     const secondEmail = document.getElementById('secondEmail').value;
     const name = document.getElementById('name').value;
     const device = document.getElementById('device').value;
     const message = document.getElementById('message').value;
 
+    // Only include secondEmail line if the user provided one
+    const secondEmailFormatted = secondEmail ? `ایمیل مشَ لات: ${secondEmail}\n` : '';
+	const nameFormatted = name ? `اسم مشَ لات: ${name}\n` : '';
+	const deviceFormatted = device ? `دستگاه: ${name}\n` : ''; 
+
     return `ایمیل: ${mainEmail}\n` +
-           `اسم مشَ لات: ${name}\n` +
-           `ایمیل مشَ لات: ${secondEmail}\n` +
-           `دستگاه: ${device}\n\n` +
+           nameFormatted +
+           secondEmailFormatted +
+           deviceFormatted +
            `====================================\n\n` +
            `${message}`;
 }
