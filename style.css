@@ -493,6 +493,11 @@ img {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
 }
 
+/* Style inputs that are optional */
+.contact-form input:optional {
+    border-style: dashed; /* Example visual cue */
+}
+
 /* --- Standard Glassmorphism Button --- */
 .glass-btn {
     font-family: 'Vazirmatn', sans-serif;
