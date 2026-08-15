@@ -1084,11 +1084,52 @@ ul.custom-list[dir="rtl"] li::before {
   right: 0;
 }
 
+/* ==========================================================================
+   1. ACCESSIBLE KEYBOARD FOCUS & WCAG SYSTEM (Scoped to avoid breaking layouts)
+   ========================================================================== */
+
+/* Universal Focus-Visible Reset (preserves default outline for mouse clicks) */
+:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+/* High-Contrast Dual-Ring Focus for Keyboard Navigation */
+:focus-visible,
+.focus-ring:focus-visible {
+  outline: 2px solid #22d3ee !important; /* High-luminance Cyan */
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.35) !important;
+}
+
+/* Pulse Animation Variant (for explicit CTA buttons) */
+.pulse-btn:focus-visible {
+  outline: 2px solid #6366f1 !important;
+  outline-offset: 3px !important;
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0px rgba(99, 102, 241, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0px rgba(99, 102, 241, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-btn:focus-visible {
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.5) !important;
+  }
+}
+
+
+/* ==========================================================================
+   2. CUSTOM DIALOGS (Alert, Confirm, Prompt Glassmorphism Modals)
+   ========================================================================== */
+
 /* Backdrop Overlay with Screen Padding */
 .custom-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.65);
@@ -1097,7 +1138,7 @@ ul.custom-list[dir="rtl"] li::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Prevents touching screen edges */
+  padding: 20px;
   box-sizing: border-box;
   z-index: 999999;
   animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -1105,68 +1146,72 @@ ul.custom-list[dir="rtl"] li::before {
 
 /* Glassmorphism Modal Box */
 .custom-modal-box {
-  background: rgba(22, 27, 34, 0.75); /* Dark translucent background */
+  background: rgba(22, 27, 34, 0.85);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
   width: 100%;
-  max-width: 420px; /* Responsive maximum width */
+  max-width: 420px;
   padding: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
-              0 0 0 1px rgba(255, 255, 255, 0.05);
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #f3f4f6;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 
+              0 0 0 1px rgba(255, 255, 255, 0.08);
+  font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
 .custom-modal-body p {
   margin: 0 0 16px 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #e5e7eb;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Dark Glassmorphism Input Field */
+/* Dark Glassmorphism Input Field (Prompt Dialog) */
 .custom-modal-input {
   width: 100%;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
+  font-family: inherit;
   font-size: 0.95rem;
   color: #ffffff;
   box-sizing: border-box;
-  outline: none;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
+}
+
+.custom-modal-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .custom-modal-input:focus {
   border-color: rgba(96, 165, 250, 0.8);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25);
 }
 
-/* Footer & Buttons */
+/* Modal Footer & Action Buttons */
 .custom-modal-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
   margin-top: 20px;
 }
 
 .custom-btn {
-  padding: 9px 18px;
+  font-family: inherit;
+  padding: 10px 20px;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s ease;
-  outline: none;
+  transition: all 0.2s ease;
 }
 
-/* OK Button (Glow Accent) */
+/* Primary/OK Button */
 .ok-btn {
   background: rgba(37, 99, 235, 0.85);
   color: #ffffff;
@@ -1177,33 +1222,26 @@ ul.custom-list[dir="rtl"] li::before {
 .ok-btn:hover {
   background: rgba(37, 99, 235, 1);
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.5);
-}
-
-.ok-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.5);
+  transform: translateY(-1px);
 }
 
 /* Cancel Button */
 .cancel-btn {
   background: rgba(255, 255, 255, 0.08);
-  color: #d1d5db;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .cancel-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
 }
 
-.cancel-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-}
-
-/* Animations */
+/* Modal Animations */
 @keyframes modalFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -1222,7 +1260,7 @@ ul.custom-list[dir="rtl"] li::before {
   }
   to {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.95);
   }
 }
 
