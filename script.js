@@ -216,46 +216,6 @@ btn.addEventListener('click', secondFunction);
 // Store the original native alert function (optional, in case you need it later)
 window.nativeAlert = window.alert;
 
-// Override window.alert
-window.alert = function (message) {
-  // Prevent duplicate modals if multiple alerts trigger quickly
-  if (document.getElementById('custom-alert-modal')) return;
-
-  // 1. Create overlay
-  const overlay = document.createElement('div');
-  overlay.id = 'custom-alert-modal';
-  overlay.className = 'custom-alert-overlay';
-
-  // 2. Create modal box markup
-  overlay.innerHTML = `
-    <div class="custom-alert-box">
-      <div class="custom-alert-header">
-        <span class="custom-alert-title">Notice</span>
-      </div>
-      <div class="custom-alert-body">
-        <p>${String(message).replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
-      </div>
-      <div class="custom-alert-footer">
-        <button id="custom-alert-ok-btn" class="custom-alert-btn">OK</button>
-      </div>
-    </div>
-  `;
-
-  // 3. Append to body
-  document.body.appendChild(overlay);
-
-  // 4. Handle close action
-  const okBtn = overlay.querySelector('#custom-alert-ok-btn');
-  okBtn.focus();
-
-  const closeModal = () => {
-    overlay.classList.add('custom-alert-fade-out');
-    overlay.addEventListener('animationend', () => overlay.remove());
-  };
-
-  okBtn.addEventListener('click', closeModal);
-};
-
 // Preserve original native functions (good practice)
 // Preserve native functions
 window.nativeConfirm = window.confirm;
@@ -365,7 +325,33 @@ function createModal({ bodyHtml, setup, onCancel }) {
 }
 
 // ==========================================
-// 1. OVERRIDE WINDOW.CONFIRM
+// 1. OVERRIDE WINDOW.ALERT (Optimized to use shared modal engine)
+// Returns: Promise<void>
+// ==========================================
+window.alert = function (message) {
+  // Prevent duplicate modals if multiple alerts trigger quickly
+  if (document.querySelector('.custom-modal-overlay')) return Promise.resolve();
+
+  return createModal({
+    bodyHtml: `
+      <div class="custom-modal-body">
+        <p>${escapeHtml(message)}</p>
+      </div>
+      <div class="custom-modal-footer">
+        <button class="custom-btn ok-btn">OK</button>
+      </div>
+    `,
+    onCancel: () => {},
+    setup: (overlay, close) => {
+      const okBtn = overlay.querySelector('.ok-btn');
+      okBtn.focus();
+      okBtn.addEventListener('click', () => close());
+    }
+  });
+};
+
+// ==========================================
+// 2. OVERRIDE WINDOW.CONFIRM
 // Returns: Promise<boolean> (true or false)
 // ==========================================
 // OVERRIDE WINDOW.CONFIRM
@@ -395,7 +381,7 @@ window.confirm = function (message) {
 };
 
 // ==========================================
-// 2. OVERRIDE WINDOW.PROMPT
+// 3. OVERRIDE WINDOW.PROMPT
 // Returns: Promise<string | null>
 // ==========================================
 // OVERRIDE WINDOW.PROMPT
