@@ -416,3 +416,17 @@ window.prompt = function (message, defaultValue = "") {
     }
   });
 };
+function openWithApp(event, urlToOpen) {
+  // Check if native system sharing is supported
+  if (navigator.share) {
+    // Prevent the default link navigation
+    if (event) event.preventDefault();
+
+    navigator.share({
+      title: 'Open Link',
+      url: urlToOpen
+    }).catch((err) => console.log('Share canceled or failed:', err));
+  } 
+  // Fallback: If navigator.share is NOT supported, 
+  // letting event.preventDefault() NOT run allows the <a> tag to open the href naturally!
+  }
