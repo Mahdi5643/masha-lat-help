@@ -1264,6 +1264,62 @@ ul.custom-list[dir="rtl"] li::before {
   }
 }
 
+/* Container handles sizing, aspect ratio, and modern styling */
+/* Base Desktop Styles */
+.castle-game-wrapper {
+  /* Dimensions & Centering */
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+  margin: 2rem auto;
+  
+  /* Visual Appearance */
+  position: relative;
+  border-radius: 20px;
+  background-color: #0d0e12;
+  overflow: hidden;
+  
+  /* Glow & Elevation Effects */
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+    
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.castle-game-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 28px 50px -15px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.castle-game-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Mobile Specific Adjustments */
+@media (max-width: 480px) {
+  .castle-game-wrapper {
+    /* Sets the width to 100% minus 32px to create a 16px gap on both sides */
+    width: calc(100% - 32px);
+    margin: 1.5rem auto;       /* Ensures auto-centering horizontally */
+    border-radius: 16px;
+  }
+}
+
+/* Add text-decoration: none to prevent underlines on <a> tags */
+.glass-btn,
+.glass-btn-primary,
+.glass-btn-custom {
+    text-decoration: none; /* Prevents underlines when used on <a> tags */
+    color: #ffffff;
+    /* ... rest of your existing CSS styles ... */
+}
+
 /* On desktop screens (600px and larger) */
 @media (min-width: 600px) {
     .navigation {
@@ -1399,4 +1455,4 @@ ul.custom-list[dir="rtl"] li::before {
 .top-header h1 {
     margin: 0;
     color: #ffffff;
-}
+	}
