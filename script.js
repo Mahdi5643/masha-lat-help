@@ -430,3 +430,11 @@ function openWithApp(event, urlToOpen) {
   // Fallback: If navigator.share is NOT supported, 
   // letting event.preventDefault() NOT run allows the <a> tag to open the href naturally!
   }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('Service Worker registered:', reg.scope))
+      .catch((err) => console.error('Service Worker registration failed:', err));
+  });
+}
