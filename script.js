@@ -438,3 +438,83 @@ if ('serviceWorker' in navigator) {
       .catch((err) => console.error('Service Worker registration failed:', err));
   });
 }
+
+// --- AI Chatbot Frontend Logic ---
+
+const chatToggleBtn = document.getElementById("chatToggleBtn");
+const chatWindow = document.getElementById("chatWindow");
+const closeChat = document.getElementById("closeChat");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
+
+// Toggle Chat Window Open/Close
+if (chatToggleBtn && chatWindow) {
+    chatToggleBtn.addEventListener("click", () => {
+        chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+        if (chatWindow.style.display === "flex") {
+            chatInput.focus();
+        }
+    });
+}
+
+if (closeChat && chatWindow) {
+    closeChat.addEventListener("click", () => {
+        chatWindow.style.display = "none";
+    });
+}
+
+// Handle Form Submission (Sending messages to your Vercel Backend)
+if (chatForm) {
+    chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        // 1. Show user message in the chat box
+        appendMessage(userMessage, "user");
+        chatInput.value = "";
+
+        // 2. Show a loading/thinking message
+        const loadingMsg = appendMessage("مشَ لات در حال فکر کردن است...", "loading");
+
+        try {
+            // 3. Send the message to your live Vercel backend function
+            // ⚠️ REMEMBER TO REPLACE THIS URL with your actual Vercel project URL once deployed!
+            const backendUrl = "https://masha-lat-help.vercel.app/api/chat";
+
+            const response = await fetch(backendUrl, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                body: JSON.stringify({ message: userMessage })
+            });
+
+            const data = await response.json();
+            
+            // Remove the loading indicator
+            if (loadingMsg) loadingMsg.remove();
+
+            if (response.ok && data.reply) {
+                appendMessage(data.reply, "bot");
+            } else {
+                throw new Error(data.error || "خطا در پاسخ سرور");
+            }
+        } catch (error) {
+            if (loadingMsg) loadingMsg.remove();
+            appendMessage("متأسفانه خطایی رخ داد. لطفاً دوباره تلاش کنید.", "bot");
+            console.error("Chat error:", error);
+        }
+    });
+}
+
+// Helper function to append messages into the chat window
+function appendMessage(text, sender) {
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `chat-message ${sender}`;
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return msgDiv;
+}
