@@ -304,6 +304,25 @@
     </dialog>
 </div>
 
+    <!-- --- AI Chatbot Widget HTML --- -->
+    <button id="chatToggleBtn" class="chat-toggle-btn">💬 سوال از هوش مصنوعی</button>
+
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <span>پشتیبان هوشمند مشَ لات</span>
+            <button id="closeChat" class="chat-close-btn">&times;</button>
+        </div>
+        
+        <div id="chatMessages" class="chat-messages">
+            <div class="chat-message bot">سلام! من دستیار هوشمند «مشَ لات» هستم. هر سوالی درباره بازی، تنظیمات، اکانت یا هر چیز دیگه داری ازم بپرس!</div>
+        </div>
+        
+        <form id="chatForm" class="chat-input-form">
+            <input type="text" id="chatInput" class="chat-input" placeholder="پیام خود را بنویسید..." autocomplete="off" required>
+            <button type="submit" class="chat-submit-btn">ارسال</button>
+        </form>
+    </div>
+
     <script>
         // Get all buttons with the class 'toggle-button'
         var buttons = document.getElementsByClassName("toggle-button");
@@ -311,19 +330,33 @@
 
         for (i = 0; i < buttons.length; i++) {
           buttons[i].addEventListener("click", function() {
-            // Toggle the 'active' class on the button itself (optional for styling)
             this.classList.toggle("active");
-            
-            // Get the next sibling element, which is the content div
             var content = this.nextElementSibling;
-            
-            // Toggle the 'active' class on the content to show/hide it
             content.classList.toggle("active");
           });
         }
     </script>
 
-	    <!-- Link your external JS file at the bottom of <body> -->
+    <!-- --- AI Chatbot Widget HTML --- -->
+    <button id="chatToggleBtn" class="chat-toggle-btn">💬 سوال از هوش مصنوعی</button>
+
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <span>پشتیبان هوشمند مشَ لات</span>
+            <button id="closeChat" class="chat-close-btn">&times;</button>
+        </div>
+        
+        <div id="chatMessages" class="chat-messages">
+            <div class="chat-message bot">سلام! من دستیار هوشمند «مشَ لات» هستم. هر سوالی درباره بازی، تنظیمات، اکانت یا هر چیز دیگه داری ازم بپرس!</div>
+        </div>
+        
+        <form id="chatForm" class="chat-input-form">
+            <input type="text" id="chatInput" class="chat-input" placeholder="پیام خود را بنویسید..." autocomplete="off" required>
+            <button type="submit" class="chat-submit-btn">ارسال</button>
+        </form>
+    </div>
+
+    <!-- Link your external JS file at the bottom of <body> -->
     <script src="script.js"></script>
 </body> 
-</html> 
+</html>
