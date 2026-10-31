@@ -481,7 +481,7 @@ if (chatForm) {
         try {
             // 3. Send the message to your live Vercel backend function
             // ⚠️ REMEMBER TO REPLACE THIS URL with your actual Vercel project URL once deployed!
-            const backendUrl = "https://masha-lat-help.vercel.app/api/chat";
+            const backendUrl = "https://masha-lat-help-chatbot.vercel.app";
 
             const response = await fetch(backendUrl, {
                 method: "POST",
