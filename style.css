@@ -1337,7 +1337,8 @@ ul.custom-list[dir="rtl"] li::before {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 99999; /* Increased to guarantee it sits above all page elements */
+    pointer-events: auto; /* Ensures clicks are explicitly accepted */
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
@@ -1360,7 +1361,8 @@ ul.custom-list[dir="rtl"] li::before {
     display: none;
     flex-direction: column;
     overflow: hidden;
-    z-index: 1001;
+    z-index: 100000; /* Higher than the toggle button */
+    pointer-events: auto;
     border: 1px solid rgba(0, 0, 0, 0.1);
     font-family: 'Vazirmatn', sans-serif;
     direction: rtl;
